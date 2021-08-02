@@ -4,14 +4,14 @@
     <li class="cards">Cards</li>
     <li>Loan</li>
     <li>Credit</li>
-    <li>Settings</li>
+    <li>Sign Out</li>
   </ul>
 </template>
 
 <script>
 export default {
-  name: "Options",
-};
+  name: 'Options',
+}
 </script>
 
 <style lang="scss">
@@ -25,5 +25,15 @@ ul {
 }
 .cards:active {
   color: #01d167;
+}
+@media (max-width: 1023px) {
+  ul {
+    display: flex;
+    li {
+      flex: 1;
+      color: gray;
+      padding: 0 0;
+    }
+  }
 }
 </style>
