@@ -1,18 +1,255 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
-</template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import Options from "@/components/options";
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    Options,
+  },
+  data: () => {
+    return {
+      fullWidth: 0,
+    };
+  },
+  computed: {
+    isMobile() {
+      return this.fullWidth <= 1023;
+    },
+  },
+  methods: {
+    handleResize() {
+      this.fullWidth = screen.width;
+    },
+  },
+  mounted() {
+    this.fullWidth = screen.width;
+    window.addEventListener("resize", this.handleResize);
   },
 };
 </script>
+
+<template>
+  <div class="layout">
+    <div class="page-container">
+      <header class="app-header">
+        <div class="header-bar">
+          <div class="toolbar row no-wrap items-center">
+            <div class="space"></div>
+            <img
+              v-if="isMobile"
+              src="../assets/aspire-mobile-logo.jpeg"
+              alt="Aspire Singapore"
+              class="header-logo"
+            />
+          </div>
+        </div>
+        <div class="header-content">
+          <div class="header-title"></div>
+        </div>
+      </header>
+      <main>
+        <div>
+          <router-link to="/">My debit Cards</router-link>
+          <router-link to="myDebitCards">Loan</router-link>
+        </div>
+        <router-view></router-view>
+      </main>
+      <div class="text-white menu-container">
+        <aside class="menu-bar">
+          <div class="menu-content fit full-height">
+            <div class="px-xl menu-background scrollarea">
+              <div class="scroll relative-position fit hide-scrollbar">
+                <div class="absolute full-width text-justify">
+                  <img
+                    v-if="!isMobile"
+                    src="../assets/aspire-desktop-logo.png"
+                    class="desktop-sidebar-logo mt-xl mb-lg"
+                  />
+                  <div class="menu-text">
+                    Trusted way of banking for 3,000+ SMEs and startups in
+                    Singapore
+                  </div>
+                  <Options class="options" />
+                </div>
+                <!---->
+              </div>
+              <!---->
+              <div
+                aria-hidden="true"
+                class="
+                  scrollarea__bar scrollarea__bar--v
+                  absolute-right
+                  scrollarea__bar--invisible
+                "
+              ></div>
+              <div
+                aria-hidden="true"
+                class="
+                  scrollarea__thumb scrollarea__thumb--v
+                  absolute-right
+                  scrollarea__thumb--invisible
+                "
+                style="height: 959px; top: 0px"
+              ></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+.layout {
+  min-height: 959px;
+  position: relative;
+  width: 100%;
+}
+.page-container {
+  padding-top: 100px;
+  padding-left: 350px;
+  display: block;
+}
+.app-header {
+  left: 350px;
+  color: #212121;
+  background-color: initial;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+.header-content {
+  padding: 0 1.5rem;
+}
+.toolbar {
+  display: flex;
+  min-height: 3.5rem;
+  position: relative;
+  padding: 24px 12px;
+  width: 100%;
+}
+.items-center {
+  align-items: center;
+}
+.options {
+  padding-top: 50px;
+}
+.no-wrap {
+  flex-wrap: nowrap;
+}
+.space {
+  flex-grow: 1 !important;
+}
+.header-logo {
+  width: 1.5rem;
+  border-style: none;
+  margin-right: 5px;
+}
+// .menu-content {
+//   overflow-x: hidden;
+//   white-space: nowrap;
+// }
+.menu-text {
+  opacity: 0.5;
+  font-size: 16px;
+}
+.text-justify {
+  text-align: justify;
+}
+.menu-container {
+  text-align: center;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+  min-width: 0;
+}
+.menu-bar {
+  width: 350px;
+  transform: translateX(0px);
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1000;
+  display: block;
+}
+.full-height {
+  height: 100% !important;
+}
+.fit {
+  width: 100% !important;
+}
+.full-width {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.menu-background {
+  background: #0c365a !important;
+}
+.px-xl {
+  padding-left: 48px;
+  padding-right: 48px;
+}
+.desktop-sidebar-logo {
+  width: 7.8rem;
+  font-size: 50px;
+}
+.mt-xl {
+  margin-top: 20px;
+}
+.mb-lg {
+  margin-bottom: 5px;
+}
+img {
+  border-style: none;
+}
+.text-white {
+  color: #fff !important;
+}
+.scroll {
+  will-change: scroll-position;
+  overflow: auto;
+}
+.scrollarea {
+  position: relative;
+}
+.relative-position {
+  position: relative;
+}
+.text-weight-bolder {
+  font-weight: 900;
+}
+.text-h4 {
+  font-size: 1.5rem;
+}
+.mb-xs {
+  margin-bottom: 4px;
+}
+div {
+  font-size: 14px;
+}
+@media (min-width: 1024px) {
+  .header-content[data-v-a7bf3106] {
+    padding: 3.75rem 3.75rem 2.5rem;
+  }
+}
+@media (max-width: 1023px) {
+  .app-header {
+    padding-bottom: 4rem;
+    color: #fff;
+    background-color: #0c365a !important;
+    z-index: 0;
+    left: 0;
+  }
+}
+</style>
