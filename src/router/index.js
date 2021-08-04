@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/myDebitCards',
+    path: '/',
     name: 'myDebitCards',
     component: myDebitCards,
   },
