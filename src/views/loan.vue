@@ -71,7 +71,7 @@ export default {
       }
       axios({
         method: 'post',
-        url: 'https://localhost:5001/api/Loan',
+        url: 'https://aspire-be-loan.azurewebsites.net/api/Loan',
         data: {
           amount: this.amount,
           loanTerm: this.loanTerm,
