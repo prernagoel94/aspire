@@ -14,7 +14,7 @@
         <label for="loan">Loan Term(in months):</label>
         <input
           id="loan"
-          v-model="loanTerm.number"
+          v-model.number="loanTerm"
           placeholder="Loan Term"
           required
         />
@@ -69,7 +69,6 @@ export default {
         this.error = 'Amount should be greater than 100'
         return
       }
-      console.log('response')
       axios({
         method: 'post',
         url: 'https://localhost:5001/api/Loan',
