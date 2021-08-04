@@ -12,6 +12,11 @@ const routes = [
     component: myDebitCards,
   },
   {
+    path: '/myDebitCards',
+    name: 'myDebitCards',
+    component: myDebitCards,
+  },
+  {
     path: '/loan',
     name: 'loan',
     component: loan,
